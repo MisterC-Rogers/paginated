@@ -3,7 +3,7 @@ import React from 'react'
 export const Pagination = ({ usersPerPage, totalUsers, paginate, currentPage, pages }) => {
     const pageNumbers = []
     for(let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++){
-        let active = currentPage == i ? 'active' : '';
+        let active = currentPage === i ? 'active' : '';
 
         pageNumbers.push(<li className={`page-item ${active}`} key={i} onClick={() => paginate(i)}><a  href='!#' className='page-link'> {i} </a></li>)
     }
