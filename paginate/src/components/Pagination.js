@@ -9,8 +9,6 @@ export const Pagination = ({
 }) => {
     const pageNumbers = [];
 
-
-    
     for (let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++) {
         let active = currentPage === i ? "active" : "";
 
@@ -32,6 +30,23 @@ export const Pagination = ({
             <nav>
                 <ul className="pager ">
                     {currentPage > 1 ? (
+                        <li
+                            onClick={() =>
+                                paginate(currentPage - (currentPage - 1))
+                            }
+                        >
+                            <a href="#">
+                                <span aria-hidden="true">First Page</span>
+                            </a>
+                        </li>
+                    ) : (
+                        <li>
+                            <a href="#">
+                                <span aria-hidden="true">First Page</span>
+                            </a>
+                        </li>
+                    )}
+                    {currentPage > 1 ? (
                         <li onClick={() => paginate(currentPage - 1)}>
                             <a href="#">
                                 <span aria-hidden="true">&laquo;</span>
@@ -45,7 +60,10 @@ export const Pagination = ({
                         </li>
                     )}
 
-                    <li className='page__ListMargin'> {`${currentPage} of ${pageNumbers.length}`} </li>
+                    <li className="page__ListMargin">
+                        {" "}
+                        {`${currentPage} of ${pageNumbers.length}`}{" "}
+                    </li>
 
                     {currentPage < pageNumbers.length ? (
                         <li onClick={() => paginate(currentPage + 1)}>
@@ -57,6 +75,20 @@ export const Pagination = ({
                         <li>
                             <a href="#">
                                 <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    )}
+
+                    {currentPage < pageNumbers.length ? (
+                        <li onClick={() => paginate(pageNumbers.length)}>
+                            <a href="#">
+                                <span aria-hidden="true">Last Page</span>
+                            </a>
+                        </li>
+                    ) : (
+                        <li>
+                            <a href="#">
+                                <span aria-hidden="true">Last Page</span>
                             </a>
                         </li>
                     )}

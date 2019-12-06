@@ -1,5 +1,13 @@
 .App{
     &__Container{
-        margin: 20px auto;
+        background-color: blanchedalmond;
+    }
+    &__buttonDiv{
+        width: 100%;
+        margin: 0 25%;
+    }
+    &__button{
+        width: 50%;
+        margin-bottom: 15px;
     }
 }

@@ -49,7 +49,7 @@ function App() {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     //download the current users on a page
-    const objectToCSV = (data) =>{
+    const objectToCSV = (data) => {
       const csvRows = []
 
       //get the headers for the columns
@@ -67,7 +67,8 @@ function App() {
       // console.log(csvRows.join('\n'));
       return csvRows.join('\n');
     }
-    
+
+    // function to download the CSV 
     const download = (data) => {
       const currUsersData = objectToCSV(data)
       const blob = new Blob([currUsersData], {type: 'text/csv'})
@@ -101,7 +102,9 @@ function App() {
                 paginate={paginate}
                 currentPage={CurrentPage}
             />
-            <button onClick={() => download(currentUsers)}>Export Current Users</button>
+            <div className='App__buttonDiv is-primary'>
+              <button className='App__button button is-link'onClick={() => download(currentUsers)}>Export Current Users</button>
+            </div>
         </div>
     );
 }

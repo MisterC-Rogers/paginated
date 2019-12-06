@@ -16,7 +16,7 @@ return(
                             <div className='Users__user'>
                                 <span className='Users__header'>{user.firstName} {user.lastName}</span>
                             </div>
-                            <div className='Users__userImage is-hidden-mobile'>
+                            <div className='Users__userImage'>
                                 <img className= 'img-thumbnail ' src={user.picture} alt={user.firstName}></img>
                             </div>
                             <div className='Users__info'>
