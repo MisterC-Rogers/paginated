@@ -46,7 +46,12 @@ function App() {
     return (
         <div className="container mt-5">
             <h1 className="text-primary mb-3"> Clients </h1>
-            <UsersList users={currentUsers} loading={Loading} />
+            <UsersList
+              color='dark'
+              size='normal'
+              users={currentUsers} 
+              loading={Loading} 
+            />
             <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
