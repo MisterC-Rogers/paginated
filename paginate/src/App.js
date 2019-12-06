@@ -15,7 +15,7 @@ function App() {
             try {
                 setLoading(true);
                 const userData = await axios.get(
-                    "https://randomuser.me/api/?results=100"
+                    "https://randomuser.me/api/?results=1000"
                 );
                 const users = Object.values(userData.data.results).map(
                     i =>({
