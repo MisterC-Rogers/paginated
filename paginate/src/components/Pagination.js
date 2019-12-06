@@ -8,6 +8,9 @@ export const Pagination = ({
     currentPage
 }) => {
     const pageNumbers = [];
+
+
+    
     for (let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++) {
         let active = currentPage === i ? "active" : "";
 

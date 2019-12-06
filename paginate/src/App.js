@@ -15,10 +15,18 @@ function App() {
             try {
                 setLoading(true);
                 const userData = await axios.get(
-                    "https://randomuser.me/api/?results=200"
+                    "https://randomuser.me/api/?results=100"
                 );
-                const users = Object.keys(userData.data.results).map(
-                    i => userData.data.results[i]
+                const users = Object.values(userData.data.results).map(
+                    i =>({
+                      firstName: i.name.first,
+                      lastName: i.name.last,
+                      age: i.dob.age,
+                      phone: i.cell,
+                      email: i.email,
+                      picture: i.picture.large,
+                      gender: i.gender,
+                    })
                 );
                 setUsers(users);
                 setLoading(false);
@@ -32,8 +40,6 @@ function App() {
         getData();
     }, []);
 
-    // console.log(Users[0]);
-
     //make the users pre page
     const lastUser = CurrentPage * UsersPerPage;
     const firstUser = lastUser - UsersPerPage;
@@ -42,6 +48,40 @@ function App() {
     //change the page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
+    //download the current users on a page
+    const objectToCSV = (data) =>{
+      const csvRows = []
+
+      //get the headers for the columns
+      const headers = Object.keys(data[0])
+      csvRows.push(headers.join(','))
+
+      // loop over the rows
+      for(const row of data){
+        const values = headers.map(header => {
+          const escaped = (''+row[header]).replace(/"/g, '\\"')
+          return `"${escaped}"`
+        })
+        csvRows.push(values.join(','))
+      } 
+      // console.log(csvRows.join('\n'));
+      return csvRows.join('\n');
+    }
+    
+    const download = (data) => {
+      const currUsersData = objectToCSV(data)
+      const blob = new Blob([currUsersData], {type: 'text/csv'})
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.setAttribute('hidden', '')
+      a.setAttribute('href', url)
+      a.setAttribute('download', 'users.csv')
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+    }
+
+    
     return (
         <div className="container App__Container">
             <h1 className='title is-1 has-text-centered'> Clients </h1>
@@ -61,6 +101,7 @@ function App() {
                 paginate={paginate}
                 currentPage={CurrentPage}
             />
+            <button onClick={() => download(currentUsers)}>Export Current Users</button>
         </div>
     );
 }
