@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UsersList from "./components/Users";
 import { Pagination } from "./components/Pagination";
-import "./App.css";
+import './styles/App.scss'
 
 function App() {
     const [Users, setUsers] = useState([]);
@@ -15,7 +15,7 @@ function App() {
             try {
                 setLoading(true);
                 const userData = await axios.get(
-                    "https://randomuser.me/api/?results=100"
+                    "https://randomuser.me/api/?results=200"
                 );
                 const users = Object.keys(userData.data.results).map(
                     i => userData.data.results[i]
@@ -38,17 +38,20 @@ function App() {
     const lastUser = CurrentPage * UsersPerPage;
     const firstUser = lastUser - UsersPerPage;
     const currentUsers = Users.slice(firstUser, lastUser);
-    const numberPages = Math.floor(Users / UsersPerPage);
 
     //change the page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
-        <div className="container mt-5">
-            <h1 className="text-primary mb-3"> Clients </h1>
+        <div className="container App__Container">
+            <h1 className='title is-1 has-text-centered'> Clients </h1>
+            <Pagination
+                usersPerPage={UsersPerPage}
+                totalUsers={Users.length}
+                paginate={paginate}
+                currentPage={CurrentPage}
+            />
             <UsersList
-              color='dark'
-              size='normal'
               users={currentUsers} 
               loading={Loading} 
             />
@@ -57,7 +60,6 @@ function App() {
                 totalUsers={Users.length}
                 paginate={paginate}
                 currentPage={CurrentPage}
-                pages={numberPages}
             />
         </div>
     );
