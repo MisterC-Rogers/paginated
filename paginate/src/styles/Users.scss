@@ -1,0 +1,64 @@
+.Users {
+    &__column {
+        display: flex;
+        align-items: stretch;
+        @media(max-width:515px){
+            width: 98%;
+            margin: 0 auto;
+        }
+    }
+
+    &__card {
+        display: flex;
+        // Stretch to fit column width
+        width: 100%;
+        // Ensure .card-content stretches to fit width
+        align-items: stretch;
+    }
+
+    &__card-content {
+        display: flex;
+        flex-direction: column;
+        // Stretch to fit column width
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    &__user {
+        margin: 5px auto;
+    }
+
+    &__userImage {
+        margin: 0 auto;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    &__row{
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__space{
+        margin: 0 2px;
+    }
+
+    &__single{
+        @media (max-width: 515px) {
+            width: 75%;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+    }
+
+    &__header{
+        font-weight: bold;
+    }
+}
