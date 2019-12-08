@@ -3,26 +3,26 @@ import { Link } from 'react-router-dom'
 import '../styles/User.scss'
 export const User = ({ user, closeViewer }) => {
     return (
-        <div className="Users__card card">
-            <div className="Users__card-content card-content">
-                <div className="Users__user">
-                    <span className="Users__header">
+        <div className="user__card card">
+            <div className="user__card-content card-content">
+                <div className="user__user">
+                    <span className="user__header">
                         {user.title}. {user.firstName} {user.lastName}
                     </span>
                 </div>
-                <div className="Users__userImage">
+                <div className="user__userImage">
                     <img
                         className="img-thumbnail "
                         src={user.picture}
                         alt={user.firstName}
                     ></img>
                 </div>
-                <div className="Users__info">
-                    <div className="Users__row">
-                        <p className="Users__space">
+                <div className="user__info">
+                    <div className="user__row">
+                        <p className="user__space">
                             <b>Age:</b> {user.age}
                         </p>
-                        <p className="Users__space">
+                        <p className="user__space">
                             <b>Gender:</b> {user.gender}
                         </p>
                     </div>
