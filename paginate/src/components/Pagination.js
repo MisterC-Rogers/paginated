@@ -18,10 +18,7 @@ export const Pagination = ({
                 key={i}
                 onClick={() => paginate(i)}
             >
-                <a href="!#" className="page-link">
-                    {" "}
-                    {i}{" "}
-                </a>
+                {" "}{i}{" "}
             </li>
         );
     }
@@ -33,31 +30,21 @@ export const Pagination = ({
                         <li
                             className='page__hide'
                             onClick={() =>
-                                paginate(currentPage - (currentPage - 1))
-                            }
-                        >
-                            <a href="!#" className='page__hide'>
-                                <span aria-hidden="true">First Page</span>
-                            </a>
+                                paginate(currentPage - (currentPage - 1))}>
+                            <span className='page__btn' aria-hidden="true">First Page</span>
                         </li>
                     ) : (
                         <li className='page__hide'>
-                            <a href="!#" className='page__hide'>
-                                <span aria-hidden="true">First Page</span>
-                            </a>
+                            <span aria-hidden="true">First Page</span>
                         </li>
                     )}
                     {currentPage > 1 ? (
                         <li onClick={() => paginate(currentPage - 1)}>
-                            <a href="!#">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
+                            <span className='page__btn' aria-hidden="true">&laquo;</span>
                         </li>
                     ) : (
                         <li>
-                            <a href="!#">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
+                            <span aria-hidden="true">&laquo;</span>
                         </li>
                     )}
 
@@ -68,15 +55,11 @@ export const Pagination = ({
 
                     {currentPage < pageNumbers.length ? (
                         <li onClick={() => paginate(currentPage + 1)}>
-                            <a href="!#">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
+                            <span className='page__btn' aria-hidden="true">&raquo;</span>
                         </li>
                     ) : (
                         <li>
-                            <a href="!#">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
+                            <span aria-hidden="true">&raquo;</span>
                         </li>
                     )}
 
@@ -84,15 +67,11 @@ export const Pagination = ({
                         <li 
                         className='page__hide'
                         onClick={() => paginate(pageNumbers.length)}>
-                            <a href="!#">
-                                <span aria-hidden="true">Last Page</span>
-                            </a>
+                            <span className='page__btn' aria-hidden="true">Last Page</span>
                         </li>
                     ) : (
                         <li className='page__hide'>
-                            <a href="!#">
-                                <span aria-hidden="true">Last Page</span>
-                            </a>
+                            <span aria-hidden="true">Last Page</span>
                         </li>
                     )}
                 </ul>
