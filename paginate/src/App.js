@@ -18,11 +18,12 @@ function App() {
             try {
                 setLoading(true);
                 const userData = await axios.get(
-                    "https://randomuser.me/api/?results=10"
+                    "https://randomuser.me/api/?results=100"
                 );
+                // console.log(userData.data.results);
                 const users = Object.values(userData.data.results).map(
                     i =>({
-                      id: i.id.value,
+                      id: i.login.uuid,
                       title: i.name.title, 
                       firstName: i.name.first,
                       lastName: i.name.last,
@@ -57,7 +58,8 @@ function App() {
     const lastUser = CurrentPage * UsersPerPage;
     const firstUser = lastUser - UsersPerPage;
     const currentUsers = Users.slice(firstUser, lastUser);
-
+    const currentUser = CurrentUser
+    
     //change the page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -98,8 +100,7 @@ function App() {
     //view single user data
     const viewUser = (id) => {
       const filterUser = Users.filter(user => user.id === id)
-      const newCurrentUser = filterUser.length > 0 ? filterUser[0] : null
-      setCurrentUser(newCurrentUser)
+      setCurrentUser(filterUser)
     }
     //reset current user 
     const closeViewer = () => {
@@ -110,26 +111,30 @@ function App() {
     return (
         <div className="App__Container">
             <h1 className='title is-1 has-text-centered'> Clients </h1>
+
             {Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
                 paginate={paginate}
                 currentPage={CurrentPage}
             /> : null}
+
             {CurrentUser == null ? 
             <UsersList
               viewUser={viewUser}
               users={currentUsers} 
               loading={Loading} 
-            /> : <User closeViewer={closeViewer} user={CurrentUser}/>}
+            /> : <User closeViewer={closeViewer} user={CurrentUser[0]}/>}
+
             {Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
                 paginate={paginate}
                 currentPage={CurrentPage}
             /> : null}
+
             <div className='App__buttonDiv is-primary'>
-              <button className='App__button button is-link'onClick={() => download(currentUsers)}>Export Current Users</button>
+              {CurrentUser == null ? <button className='App__button button is-link'onClick={() => download(currentUsers)}>Export Users Data</button> : <button className='App__button button is-link'onClick={() => download(currentUser)}>Export User Data</button>}
             </div>
         </div>
     );
