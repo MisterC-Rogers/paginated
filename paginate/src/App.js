@@ -84,7 +84,7 @@ function App() {
 
     
     return (
-        <div className="container App__Container">
+        <div className="App__Container">
             <h1 className='title is-1 has-text-centered'> Clients </h1>
             <Pagination
                 usersPerPage={UsersPerPage}

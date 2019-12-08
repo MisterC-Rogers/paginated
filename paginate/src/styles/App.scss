@@ -1,6 +1,10 @@
 .App{
     &__Container{
         background-color: blanchedalmond;
+        width: 98vw;
+        margin: 0 auto;
+        padding-left: 3%;
+        padding-right: 3%;
     }
     &__buttonDiv{
         width: 100%;

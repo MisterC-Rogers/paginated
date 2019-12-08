@@ -5,4 +5,9 @@
     &__ListMergin{
         margin: 0 5px;
     }
+    &__hide{
+        @media(max-width:500px){
+            display: none !important;
+        }
+    }
 }
