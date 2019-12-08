@@ -3,8 +3,7 @@
         background-color: blanchedalmond;
         width: 98vw;
         margin: 0 auto;
-        padding-left: 3%;
-        padding-right: 3%;
+        padding: 3.5%;
     }
     &__buttonDiv{
         width: 100%;
@@ -13,5 +12,10 @@
     &__button{
         width: 50%;
         margin: 15px 0;
+    }
+    &__sub{
+        font-weight: bold;
+        color: blue;
+        margin-bottom: 0px !important;
     }
 }

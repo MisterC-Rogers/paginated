@@ -111,7 +111,8 @@ function App() {
     return (
         <div className="App__Container">
             <h1 className='title is-1 has-text-centered'> Clients </h1>
-
+            <p className='App__sub subtitle is-5 has-text-centered'>You can view the users</p>
+            <p className='App__sub subtitle is-5 has-text-centered'>download a page of users or one users Information</p>
             {CurrentUser === 0 && Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
@@ -142,7 +143,7 @@ function App() {
             /> : null}
 
             <div className='App__buttonDiv is-primary'>
-              {CurrentUser == null ? <button className='App__button button is-link'onClick={() => download(currentUsers)}>Export Users Data</button> : <button className='App__button button is-link'onClick={() => download(currentUser)}>Export User Data</button>}
+              {CurrentUser === 0 ? <button className='App__button button is-link'onClick={() => download(currentUsers)}>Export Users Data</button> : <button className='App__button button is-link'onClick={() => download(currentUser)}>Export User Data</button>}
             </div>
         </div>
     );
