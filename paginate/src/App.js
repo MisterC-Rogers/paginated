@@ -113,7 +113,7 @@ function App() {
         <div className="App__Container">
             <h1 className='title is-1 has-text-centered'> Clients </h1>
 
-            {Users.length > 10 ? <Pagination
+            {CurrentUser === 0 && Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
                 paginate={paginate}
@@ -135,7 +135,7 @@ function App() {
               />}
             />
 
-            {Users.length > 10 ? <Pagination
+            {CurrentUser === 0 && Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
                 paginate={paginate}
