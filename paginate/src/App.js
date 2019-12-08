@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Route } from 'react-router-dom'
 import axios from "axios";
 import UsersList from "./components/UsersList";
 import { User } from './components/User'
@@ -10,7 +11,7 @@ function App() {
     const [Loading, setLoading] = useState(false);
     const [UsersPerPage] = useState(10);
     const [CurrentPage, setCurrentPage] = useState(1);
-    const [CurrentUser, setCurrentUser] = useState(null)
+    const [CurrentUser, setCurrentUser] = useState(0)
 
     //get the user data
     useEffect(() => {
@@ -104,7 +105,7 @@ function App() {
     }
     //reset current user 
     const closeViewer = () => {
-      setCurrentUser(null)
+      setCurrentUser(0)
     }
 
     
@@ -119,12 +120,20 @@ function App() {
                 currentPage={CurrentPage}
             /> : null}
 
-            {CurrentUser == null ? 
-            <UsersList
-              viewUser={viewUser}
-              users={currentUsers} 
-              loading={Loading} 
-            /> : <User closeViewer={closeViewer} user={CurrentUser[0]}/>}
+            <Route exact path='/' render={() =>
+              <UsersList
+                viewUser={viewUser}
+                users={currentUsers} 
+                loading={Loading} 
+              />} 
+            />
+
+            <Route exact path='/user/:id' render={() =>
+              <User 
+                closeViewer={closeViewer} 
+                user={CurrentUser[0]} 
+              />}
+            />
 
             {Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}

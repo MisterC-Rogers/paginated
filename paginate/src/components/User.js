@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import '../styles/User.scss'
 export const User = ({ user, closeViewer }) => {
     return (
@@ -52,12 +53,11 @@ export const User = ({ user, closeViewer }) => {
                         <b>Member for {user.member} years</b>
                     </p>
                     <p>
-                        <a href="!#" onClick={() => closeViewer()}>
-                            Close Viewer
-                        </a>
+                        <Link to={`/`} onClick={() => closeViewer()}>Close Viewer</Link>
                     </p>
                 </div>
             </div>
         </div>
     );
 };
+

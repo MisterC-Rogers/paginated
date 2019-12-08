@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import '../styles/UsersList.scss'
 
 const UsersList = ({ users, loading, viewUser }) => {
@@ -26,7 +28,7 @@ return(
                                 </div>
                                 <p className='is-hidden-mobile'><b>Email:</b> {user.email}</p>
                                 <p className='is-hidden-mobile'><b>Phone:</b> {user.phone}</p>
-                                <p><a href='!#' onClick={() => viewUser(user.id)}>View More</a></p>
+                                <Link to={`/user/${user.id}`} onClick={() => viewUser(user.id)}>View More</Link>
                             </div>
                         </div>
                     </div>
