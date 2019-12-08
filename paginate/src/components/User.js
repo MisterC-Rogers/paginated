@@ -1,5 +1,5 @@
 import React from "react";
-
+import '../styles/User.scss'
 export const User = ({ user, closeViewer }) => {
     return (
         <div className="Users__card card">
@@ -25,7 +25,7 @@ export const User = ({ user, closeViewer }) => {
                             <b>Gender:</b> {user.gender}
                         </p>
                     </div>
-                    <div >
+                    <div className='user__address'>
                         <p>
                             <b>ADDRESS</b>
                         </p>
@@ -49,7 +49,7 @@ export const User = ({ user, closeViewer }) => {
                         <b>Phone:</b> {user.phone}
                     </p>
                     <p>
-                        Member for {user.member} years
+                        <b>Member for {user.member} years</b>
                     </p>
                     <p>
                         <a href="!#" onClick={() => closeViewer()}>

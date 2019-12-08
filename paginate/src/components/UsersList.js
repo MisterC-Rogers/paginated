@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Users.scss'
+import '../styles/UsersList.scss'
 
 const UsersList = ({ users, loading, viewUser }) => {
 if(loading){
