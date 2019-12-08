@@ -34,8 +34,7 @@ function App() {
                       username: i.login.username,
                       picture: i.picture.large,
                       gender: i.gender,
-                      addressNum: i.location.street.number,
-                      addressStreet: i.location.street.name,
+                      address: i.location.street.number + ' ' + i.location.street.name,
                       city: i.location.city,
                       state: i.location.state,
                       zipCode: i.location.postcode,
@@ -112,8 +111,9 @@ function App() {
     return (
         <div className="App__Container">
             <h1 className='title is-1 has-text-centered'> Clients </h1>
-
-            {Users.length > 10 ? <Pagination
+            <p className='App__sub subtitle is-5 has-text-centered'>You can view the users</p>
+            <p className='App__sub subtitle is-5 has-text-centered'>download a page of users or one users Information</p>
+            {CurrentUser === 0 && Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
                 paginate={paginate}
@@ -135,7 +135,7 @@ function App() {
               />}
             />
 
-            {Users.length > 10 ? <Pagination
+            {CurrentUser === 0 && Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
                 paginate={paginate}
@@ -143,7 +143,7 @@ function App() {
             /> : null}
 
             <div className='App__buttonDiv is-primary'>
-              {CurrentUser == null ? <button className='App__button button is-link'onClick={() => download(currentUsers)}>Export Users Data</button> : <button className='App__button button is-link'onClick={() => download(currentUser)}>Export User Data</button>}
+              {CurrentUser === 0 ? <button className='App__button button is-link'onClick={() => download(currentUsers)}>Export Users Data</button> : <button className='App__button button is-link'onClick={() => download(currentUser)}>Export User Data</button>}
             </div>
         </div>
     );

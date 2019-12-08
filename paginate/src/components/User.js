@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+
 import '../styles/User.scss'
+
 export const User = ({ user, closeViewer }) => {
     return (
         <div className="user__card card">
@@ -31,7 +33,7 @@ export const User = ({ user, closeViewer }) => {
                             <b>ADDRESS</b>
                         </p>
                         <p>
-                            {user.addressNum} {user.addressStreet}
+                            {user.address}
                         </p>
                         <p>
                             {user.city}, {user.state} {user.zipCode}
