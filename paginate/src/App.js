@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import UsersList from "./components/Users";
+import UsersList from "./components/UsersList";
+import { User } from './components/User'
 import { Pagination } from "./components/Pagination";
 import './styles/App.scss'
 
@@ -9,23 +10,36 @@ function App() {
     const [Loading, setLoading] = useState(false);
     const [UsersPerPage] = useState(10);
     const [CurrentPage, setCurrentPage] = useState(1);
+    const [CurrentUser, setCurrentUser] = useState(null)
 
+    //get the user data
     useEffect(() => {
         const getData = async () => {
             try {
                 setLoading(true);
                 const userData = await axios.get(
-                    "https://randomuser.me/api/?results=1000"
+                    "https://randomuser.me/api/?results=100"
                 );
+                // console.log(userData.data.results);
                 const users = Object.values(userData.data.results).map(
                     i =>({
+                      id: i.login.uuid,
+                      title: i.name.title, 
                       firstName: i.name.first,
                       lastName: i.name.last,
                       age: i.dob.age,
                       phone: i.cell,
                       email: i.email,
+                      username: i.login.username,
                       picture: i.picture.large,
                       gender: i.gender,
+                      addressNum: i.location.street.number,
+                      addressStreet: i.location.street.name,
+                      city: i.location.city,
+                      state: i.location.state,
+                      zipCode: i.location.postcode,
+                      country: i.location.country,
+                      member: i.registered.age
                     })
                 );
                 setUsers(users);
@@ -44,7 +58,8 @@ function App() {
     const lastUser = CurrentPage * UsersPerPage;
     const firstUser = lastUser - UsersPerPage;
     const currentUsers = Users.slice(firstUser, lastUser);
-
+    const currentUser = CurrentUser
+    
     //change the page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -82,28 +97,44 @@ function App() {
       document.body.removeChild(a)
     }
 
+    //view single user data
+    const viewUser = (id) => {
+      const filterUser = Users.filter(user => user.id === id)
+      setCurrentUser(filterUser)
+    }
+    //reset current user 
+    const closeViewer = () => {
+      setCurrentUser(null)
+    }
+
     
     return (
         <div className="App__Container">
             <h1 className='title is-1 has-text-centered'> Clients </h1>
-            <Pagination
+
+            {Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
                 paginate={paginate}
                 currentPage={CurrentPage}
-            />
+            /> : null}
+
+            {CurrentUser == null ? 
             <UsersList
+              viewUser={viewUser}
               users={currentUsers} 
               loading={Loading} 
-            />
-            <Pagination
+            /> : <User closeViewer={closeViewer} user={CurrentUser[0]}/>}
+
+            {Users.length > 10 ? <Pagination
                 usersPerPage={UsersPerPage}
                 totalUsers={Users.length}
                 paginate={paginate}
                 currentPage={CurrentPage}
-            />
+            /> : null}
+
             <div className='App__buttonDiv is-primary'>
-              <button className='App__button button is-link'onClick={() => download(currentUsers)}>Export Current Users</button>
+              {CurrentUser == null ? <button className='App__button button is-link'onClick={() => download(currentUsers)}>Export Users Data</button> : <button className='App__button button is-link'onClick={() => download(currentUser)}>Export User Data</button>}
             </div>
         </div>
     );
