@@ -109,7 +109,8 @@ function App() {
 
     
     return (
-        <div className="App__Container">
+
+        <div className="App__Container container">
             <h1 className='title is-1 has-text-centered'> Clients </h1>
             <p className='App__sub subtitle is-5 has-text-centered'>You can view the users</p>
             <p className='App__sub subtitle is-5 has-text-centered'>download a page of users or one users Information</p>

@@ -18,34 +18,41 @@ export const Pagination = ({
                 key={i}
                 onClick={() => paginate(i)}
             >
-                {" "}{i}{" "}
+                {" "}
+                {i}{" "}
             </li>
         );
     }
     return (
         <div className="page__ContainerMargin">
             <nav>
-                <ul className="pager ">
+                <ul className="pager page__page">
                     {currentPage > 1 ? (
-                        <li
-                            className='page__hide'
+                        <button
+                            className="page__hide page__btn button is-primary"
                             onClick={() =>
-                                paginate(currentPage - (currentPage - 1))}>
-                            <span className='page__btn' aria-hidden="true">First Page</span>
-                        </li>
+                                paginate(currentPage - (currentPage - 1))
+                            }
+                        >
+                            <span aria-hidden="true">
+                                First Page
+                            </span>
+                        </button>
                     ) : (
-                        <li className='page__hide'>
+                        <button disabled="true" className="page__hide page__btn button is-primary is-light">
                             <span aria-hidden="true">First Page</span>
-                        </li>
+                        </button>
                     )}
                     {currentPage > 1 ? (
-                        <li onClick={() => paginate(currentPage - 1)}>
-                            <span className='page__btn' aria-hidden="true">&laquo;</span>
-                        </li>
+                        <button className="button page__btn is-primary" onClick={() => paginate(currentPage - 1)}>
+                            <span aria-hidden="true">
+                                &laquo;
+                            </span>
+                        </button>
                     ) : (
-                        <li>
+                        <button disabled="true" className="button page__btn is-primary is-light">
                             <span aria-hidden="true">&laquo;</span>
-                        </li>
+                        </button>
                     )}
 
                     <li className="page__ListMargin">
@@ -54,25 +61,30 @@ export const Pagination = ({
                     </li>
 
                     {currentPage < pageNumbers.length ? (
-                        <li onClick={() => paginate(currentPage + 1)}>
-                            <span className='page__btn' aria-hidden="true">&raquo;</span>
-                        </li>
+                        <button className="button page__btn is-primary" onClick={() => paginate(currentPage + 1)}>
+                            <span aria-hidden="true">
+                                &raquo;
+                            </span>
+                        </button>
                     ) : (
-                        <li>
+                        <button disabled="true" className="button page__btn is-primary is-light">
                             <span aria-hidden="true">&raquo;</span>
-                        </li>
+                        </button>
                     )}
 
                     {currentPage < pageNumbers.length ? (
-                        <li 
-                        className='page__hide'
-                        onClick={() => paginate(pageNumbers.length)}>
-                            <span className='page__btn' aria-hidden="true">Last Page</span>
-                        </li>
+                        <button
+                        className="page__hide page__btn button is-primary"
+                            onClick={() => paginate(pageNumbers.length)}
+                        >
+                            <span aria-hidden="true">
+                                Last Page
+                            </span>
+                        </button>
                     ) : (
-                        <li className='page__hide'>
+                        <button disabled="true" className="page__hide page__btn button is-primary is-light">
                             <span aria-hidden="true">Last Page</span>
-                        </li>
+                        </button>
                     )}
                 </ul>
             </nav>

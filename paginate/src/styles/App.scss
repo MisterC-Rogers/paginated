@@ -1,13 +1,13 @@
 .App{
     &__Container{
         background-color: blanchedalmond;
-        width: 98vw;
+        max-width: 800px;
         margin: 0 auto;
         padding: 3.5%;
     }
     &__buttonDiv{
         width: 100%;
-        margin: 0 25%;
+        text-align: center;
     }
     &__button{
         width: 50%;
