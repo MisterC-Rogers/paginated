@@ -1,6 +1,6 @@
 .page{
     &__btn{
-        cursor: pointer;
+        margin: 0 3px;
     }
     &__ContainerMargin{
         margin: 20px;
@@ -12,5 +12,10 @@
         @media(max-width:500px){
             display: none !important;
         }
+    }
+    &__page{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
